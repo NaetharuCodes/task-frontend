@@ -8,6 +8,11 @@ body {
 
 /* Utility Classes */
 
+/* Display */
+.hidden {
+  display: none;
+}
+
 /* Positions */
 .flex {
   display: flex;
@@ -21,6 +26,10 @@ body {
 .flex-spread {
   justify-content: space-between;
   align-items: center;
+}
+
+.flex-col {
+  flex-direction: column;
 }
 
 /* Colours */
@@ -77,8 +86,7 @@ body {
   height: 30px;
 }
 
-button {
-  background-color: #365975;
+.standard-button {
   color: #cfcfcf;
   border: none;
   border-radius: 10px;
@@ -86,10 +94,39 @@ button {
   padding: 10px;
 }
 
-button:hover {
+.standard-button:hover {
   background-color: #4c7291;
 }
 
-button:active {
+.standard-button:active {
   background-color: #769bb9;
+}
+
+.icon-button {
+  background-color: transparent;
+  border: none;
+  color: black;
+  padding: 0;
+  height: 50px;
+  width: 50px;
+}
+
+.icon-button:hover {
+  color: #4c7291;
+}
+
+.icon-button:active {
+  color: #769bb9;
+}
+
+#buttons-bar {
+  height: 60px;
+}
+
+#create-task-modal {
+  position: absolute;
+  top: 160px;
+  left: 0;
+  width: 100vw;
+  height: 76vh;
 }
