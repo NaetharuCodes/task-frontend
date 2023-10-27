@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 /* Utility Classes */
@@ -29,6 +30,14 @@ body {
 
 .bg-blue {
   background-color: #365975;
+}
+
+.bg-red {
+  background-color: #c44b4b;
+}
+
+.bg-green {
+  background-color: #a5c4be;
 }
 
 .text-white {
@@ -62,6 +71,10 @@ body {
 /* Specific Classes */
 #header {
   height: 80px;
+}
+
+.date-button-row {
+  height: 30px;
 }
 
 button {
