@@ -1,0 +1,82 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Utility Classes */
+
+/* Positions */
+.flex {
+  display: flex;
+}
+
+.flex-middle {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-spread {
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Colours */
+.bg-black {
+  background-color: #1d1d1d;
+}
+
+.bg-blue {
+  background-color: #365975;
+}
+
+.text-white {
+  color: #cfcfcf;
+}
+
+.text-green {
+  color: #448f70;
+}
+
+/* Text */
+
+.text-title {
+  font-size: larger;
+  font-weight: 800;
+  font-family: sans-serif;
+}
+
+/* Spacing */
+
+.padding {
+  padding: 10px;
+}
+
+/* Others */
+
+.border-bottom {
+  border-bottom: 2px solid #365975;
+}
+
+/* Specific Classes */
+#header {
+  height: 80px;
+}
+
+button {
+  background-color: #365975;
+  color: #cfcfcf;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  padding: 10px;
+}
+
+button:hover {
+  background-color: #4c7291;
+}
+
+button:active {
+  background-color: #769bb9;
+}
