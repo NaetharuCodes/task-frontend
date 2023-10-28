@@ -3,9 +3,14 @@ import { useState } from "react";
 interface CreateTaskProps {
   isOpen: boolean;
   toggle: () => void;
+  onTaskCreated: () => void;
 }
 
-const CreateTaskModal = ({ isOpen, toggle }: CreateTaskProps) => {
+const CreateTaskModal = ({
+  isOpen,
+  toggle,
+  onTaskCreated,
+}: CreateTaskProps) => {
   const [description, setDescription] = useState("");
 
   const today = new Date().toISOString().split("T")[0];
@@ -33,6 +38,9 @@ const CreateTaskModal = ({ isOpen, toggle }: CreateTaskProps) => {
           throw new Error("Network response was not ok");
         }
         return response.json();
+      })
+      .then((data) => {
+        onTaskCreated();
       })
       .catch((error) => {
         console.error("Error creating new task", error);
