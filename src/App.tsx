@@ -5,12 +5,40 @@ import { LiaFilterSolid } from "react-icons/lia";
 import { IoMdCreate } from "react-icons/io";
 import CreateTaskModal from "./components/CreateTaskModal";
 
+enum TaskFilter {
+  ALL = "all",
+  OPEN = "open",
+  CLOSED = "closed",
+  OVERDUE = "overdue",
+}
+
 const App = () => {
   const [tasks, setTasks] = useState<TaskProps[] | null>(null);
   const [openCreateTask, setOpenCreateTask] = useState(false);
   const [refetchTasks, setRefetchTasks] = useState(false);
+  const [filter, setFilter] = useState<TaskFilter>(TaskFilter.ALL);
 
-  const apiURL = "http://localhost:5083/tasks";
+  const handleFilterChange = () => {
+    switch (filter) {
+      case TaskFilter.ALL:
+        setFilter(TaskFilter.OPEN);
+        break;
+      case TaskFilter.OPEN:
+        setFilter(TaskFilter.OVERDUE);
+        break;
+      case TaskFilter.OVERDUE:
+        setFilter(TaskFilter.CLOSED);
+        break;
+      case TaskFilter.CLOSED:
+        setFilter(TaskFilter.ALL);
+        break;
+      default:
+        setFilter(TaskFilter.ALL);
+        break;
+    }
+  };
+
+  const apiURL = `http://localhost:5083/tasks?filter=${filter}`;
 
   useEffect(() => {
     fetch(apiURL)
@@ -20,7 +48,7 @@ const App = () => {
         console.error("Error fetching tasks:", error);
         setTasks(null);
       });
-  }, [refetchTasks]);
+  }, [refetchTasks, filter]);
 
   if (tasks === null) {
     return <div className="flex "> Loading... </div>;
@@ -46,9 +74,10 @@ const App = () => {
 
       {/* BUTTONS BAR */}
       <div className="flex flex-spread padding" id="buttons-bar">
-        <button className="icon-button">
+        <button className="icon-button" onClick={handleFilterChange}>
           <LiaFilterSolid size={32} />
         </button>
+        <div className="text-upper text-title">{filter}</div>
         <button className="icon-button" onClick={toggleCreateTaskModal}>
           <IoMdCreate size={32} />
         </button>
