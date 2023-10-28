@@ -8,6 +8,7 @@ import CreateTaskModal from "./components/CreateTaskModal";
 const App = () => {
   const [tasks, setTasks] = useState<TaskProps[] | null>(null);
   const [openCreateTask, setOpenCreateTask] = useState(false);
+  const [refetchTasks, setRefetchTasks] = useState(false);
 
   const apiURL = "http://localhost:5083/tasks";
 
@@ -19,7 +20,7 @@ const App = () => {
         console.error("Error fetching tasks:", error);
         setTasks(null);
       });
-  }, [tasks]);
+  }, [refetchTasks]);
 
   if (tasks === null) {
     return <div className="flex "> Loading... </div>;
@@ -27,6 +28,10 @@ const App = () => {
 
   const toggleCreateTaskModal = () => {
     setOpenCreateTask(!openCreateTask);
+  };
+
+  const refreshTasks = () => {
+    setRefetchTasks((prev) => !prev);
   };
 
   return (
@@ -50,7 +55,11 @@ const App = () => {
       </div>
 
       {/* MODALS */}
-      <CreateTaskModal isOpen={openCreateTask} toggle={toggleCreateTaskModal} />
+      <CreateTaskModal
+        isOpen={openCreateTask}
+        toggle={toggleCreateTaskModal}
+        onTaskCreated={refreshTasks}
+      />
 
       {/* TASKS */}
       <div>
