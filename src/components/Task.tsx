@@ -48,13 +48,16 @@ const Task = ({ id, desc, dueDate, completed }: TaskProps) => {
 
   return (
     <div className={overdueStyle}>
-      <div className="padding">{desc}</div>
+      <div className="padding text-justify para-space">{desc}</div>
       <div className="flex flex-spread padding date-button-row">
         <div>{date.toDateString()}</div>
         {isCompleted ? (
           <div className="text-green">Completed</div>
         ) : (
-          <button onClick={handleCompleteTask} className="">
+          <button
+            onClick={handleCompleteTask}
+            className="bg-blue text-white standard-button"
+          >
             Complete Task
           </button>
         )}
